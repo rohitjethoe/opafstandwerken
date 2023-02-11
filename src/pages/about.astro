@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+const num = "Bob";
+const names = ["Henk", "Krol"]
+---
+
+<Layout title="About">
+    <main>
+        <h1>About</h1>
+        <h2>{num}</h2>
+        {names.map((arrayItem) => <p>{arrayItem}</p>)}
+    </main>
+</Layout>
+
+<script>
+</script>

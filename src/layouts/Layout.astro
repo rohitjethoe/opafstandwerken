@@ -1,4 +1,9 @@
 ---
+import Header from '../layouts/Header.vue';
+
+import '../styles/global.css';
+import 'bootstrap';
+
 export interface Props {
 	title: string;
 }
@@ -14,19 +19,25 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500&display=swap" rel="stylesheet"> 
 	</head>
 	<body>
+		<Header client:load/>
 		<slot />
 	</body>
 </html>
 <style is:global>
 	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+		--accent: 180, 122, 234;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #FFC4EB 30%, white 60%);
 	}
 	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
+		background-color: #f9fafb;
+		font-family: 'Sarabun', sans-serif;
+		font-weight: 300;
 	}
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
