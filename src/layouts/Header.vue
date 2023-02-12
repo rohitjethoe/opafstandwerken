@@ -50,7 +50,7 @@ export default {
                 About: {
                     id: 1,
                     url: "./about",
-                    title: "About"
+                    title: "Over ons"
                 }
             }
         }
@@ -128,6 +128,7 @@ export default {
                 transform: translateX(90vw);
                 transition: 0.7s;
                 background-color: #fff;
+                z-index: 2;
                 .navigation-list-title {
                     float: left;
                     margin: 50px;
