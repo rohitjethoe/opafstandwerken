@@ -1,16 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import JobCard from '../components/JobCard.vue';
+import Button from '../components/Button.vue';
 
 const data = {
 	welcome: {
 		title: "Op afstand werken.",
 		subtitle: "Wij werken als designer, engineer, tester en meer op afstand voor verschillende bedrijven in Nederland."
+	},
+	popular: {
+		title: "Bekijk populaire vacatures"
 	}
 }
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout
+	title="Welcome to Astro."
+>
 	<main>
 		<div class="welcome">
 			<div class="welcome-message">
@@ -18,21 +24,121 @@ const data = {
 				<p>{data.welcome.subtitle}</p>
 			</div>
 			<div class="welcome-action-vacancy">
-				<a href=""></a>
+				<Button 
+					title="Plaats een vacature" 
+					url="mailto:rohitjethoe@proton.me" 
+					client:load
+				/>
+			</div>
+		</div>
+		<div class="popular">
+			<div class="popular-title">
+				<h1>
+					{data.popular.title}
+				</h1>
+			</div>
+			<div class="popular-vacancies">
+				<JobCard 
+					name="Jouw bedrijf hier!"
+					vacancy="Java Software Developer"
+					type="Fulltime"
+					location="Amsterdam"
+					client:load
+				/>
+				<JobCard 
+					name="Jouw bedrijf hier!"
+					vacancy="Java Software Developer"
+					type="Fulltime"
+					location="Amsterdam"
+					client:load
+				/>
+				<JobCard 
+					name="Jouw bedrijf hier!"
+					vacancy="Java Software Developer"
+					type="Fulltime"
+					location="Amsterdam"
+					client:load
+				/>
 			</div>
 		</div>
 	</main>
 </Layout>
 
 <style lang='scss'>
-	h1 {
-		font-weight: 400;
-		.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
+	.welcome {
+		width: 650px;
+		margin: 0 auto;
+		margin-bottom: 60px;
+		.welcome-message {
+			text-align: center;
+			margin: 30px 0px;
+			h1 {
+				font-size: 46px;
+				text-transform: uppercase;
+				font-weight: 400;
+			}
+
+			p {
+				font-size: 24px;
+				color: #7e7e7e
+			}
+		}
+		.welcome-action-vacancy {
+			text-align: center;
+		}
+	}
+
+	.popular {
+		background-color: #fff;
+		border-top: 1px solid #E3E3E3;
+		padding: 30px 0px;
+		.popular-title {
+			h1 { 
+				font-weight: 400;
+				font-size: 32px;
+				text-align: center;
+			}
+		}
+		.popular-vacancies {
+			width: 90vw;
+			margin: 0 auto;
+			display: flex;
+			justify-content: space-between;
+
+			.job {
+				width: 60%;
+				margin: 0px 10px;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 700px) {
+		.welcome {
+			width: 350px;
+			.welcome-message {
+				h1 {
+					font-size: 30px;
+				}
+				p {
+					font-size: 14px;
+				}
+			}
+		}
+		.popular {
+			.popular-title {
+				h1 {
+					font-size: 24px;
+				}
+			}
+			.popular-vacancies {
+				width: 350px;
+				margin: 40px auto;
+				display: block;
+				.job {
+					width: 70%;
+					margin: 20px auto;
+				}
+			}
 		}
 	}
 </style>
