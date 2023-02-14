@@ -59,7 +59,6 @@ export default {
         publishPost: async function () {
             const response = await fetch('https://opafstandwerken-api-production-19e9.up.railway.app/api/VacancyItems', {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
