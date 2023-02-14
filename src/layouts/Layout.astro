@@ -3,7 +3,6 @@ import Header from '../layouts/Header.vue';
 import Footer from '../layouts/Footer.vue'; 
 
 import '../styles/global.css';
-import 'bootstrap';
 
 export interface Props {
 	title: string;
@@ -27,7 +26,7 @@ const { title } = Astro.props;
 	<body>
 		<Header client:load/>
 		<slot />
-		<Footer client:idle/>
+		<Footer client:only/>
 	</body>
 </html>
 <style is:global>
