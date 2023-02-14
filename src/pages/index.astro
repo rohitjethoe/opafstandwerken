@@ -1,15 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Latest from '../layouts/Latest.vue';
+import JobCards from '../layouts/JobCards.vue';
 import JobCard from '../components/JobCard.vue';
 import Button from '../components/Button.vue';
 
-const data = {
+const API_URI = 'https://opafstandwerken-api-production.up.railway.app/api/VacancyItems';
+
+const response = await fetch(API_URI);
+const data = await response.json();
+
+const page = {
 	welcome: {
 		title: "Op afstand werken.",
 		subtitle: "Wij werken als designer, engineer, tester en meer op afstand voor verschillende bedrijven in Nederland."
 	},
 	popular: {
-		title: "Bekijk populaire vacatures"
+		title: "Bekijk uitgelichte vacatures",
 	}
 }
 ---
@@ -20,8 +27,8 @@ const data = {
 	<main>
 		<div class="welcome">
 			<div class="welcome-message">
-				<h1>{data.welcome.title}</h1>
-				<p>{data.welcome.subtitle}</p>
+				<h1>{page.welcome.title}</h1>
+				<p>{page.welcome.subtitle}</p>
 			</div>
 			<div class="welcome-action-vacancy">
 				<Button 
@@ -34,33 +41,21 @@ const data = {
 		<div class="popular">
 			<div class="popular-title">
 				<h1>
-					{data.popular.title}
+					{page.popular.title}
 				</h1>
 			</div>
 			<div class="popular-vacancies">
-				<JobCard 
-					name="Jouw bedrijf hier!"
-					vacancy="Java Software Developer"
-					type="Fulltime"
-					location="Amsterdam"
-					client:load
-				/>
-				<JobCard 
-					name="Jouw bedrijf hier!"
-					vacancy="Java Software Developer"
-					type="Fulltime"
-					location="Amsterdam"
-					client:load
-				/>
-				<JobCard 
-					name="Jouw bedrijf hier!"
-					vacancy="Java Software Developer"
-					type="Fulltime"
-					location="Amsterdam"
+				<JobCards 
+					jobCardsData={data} 
 					client:load
 				/>
 			</div>
 		</div>
+		<Latest 
+			API_URI={API_URI} 
+			listingData={data}
+			client:load 
+		/>
 	</main>
 </Layout>
 
@@ -77,7 +72,6 @@ const data = {
 				text-transform: uppercase;
 				font-weight: 400;
 			}
-
 			p {
 				font-size: 24px;
 				color: #7e7e7e
@@ -91,6 +85,7 @@ const data = {
 	.popular {
 		background-color: #fff;
 		border-top: 1px solid #E3E3E3;
+		border-bottom: 1px solid #E3E3E3;
 		padding: 30px 0px;
 		.popular-title {
 			h1 { 
@@ -101,14 +96,9 @@ const data = {
 		}
 		.popular-vacancies {
 			width: 90vw;
-			margin: 0 auto;
+			margin: 40px auto;
 			display: flex;
 			justify-content: space-between;
-
-			.job {
-				width: 60%;
-				margin: 0px 10px;
-			}
 		}
 	}
 
@@ -134,10 +124,14 @@ const data = {
 				width: 350px;
 				margin: 40px auto;
 				display: block;
-				.job {
-					width: 70%;
-					margin: 20px auto;
-				}
+			}
+		}
+	}
+
+	@media only screen and (min-width: 1240px) {
+		.popular {
+			.popular-vacancies {
+				width: 1000px;
 			}
 		}
 	}

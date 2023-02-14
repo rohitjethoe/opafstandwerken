@@ -26,12 +26,12 @@
 export default {
     name: "JobCard",
     props: {
-        name: Text,
-        vacancy: Text,
-        location: Text,
-        type: Text,
-        logoUri: Text,
-        postedTimestamp: Text,
+        name: String,
+        vacancy: String,
+        location: String,
+        type: String,
+        logoUri: String,
+        postedTimestamp: String,
     }
 }
 </script>
@@ -41,6 +41,8 @@ export default {
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         padding: 20px;
         border-radius: 10px;
+        width: 60%;
+		margin: 0px 10px;
         .job-header {
             display: flex;
             justify-content: space-between;
@@ -74,6 +76,13 @@ export default {
             h4 {
                 font-weight: 500;
             }
+        }
+    }
+
+    @media only screen and (max-width: 700px) {
+        .job {
+            width: 70%;
+			margin: 20px auto;
         }
     }
 </style>
